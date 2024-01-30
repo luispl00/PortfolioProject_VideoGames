@@ -12,7 +12,6 @@ LEFT JOIN game_reviews AS r
 ORDER BY games_sold DESC
 
 
-
 -- DASHBOARD 2: THE GOLDEN ERA OF VIDEO GAMES
 -- Table 2: Best years for video games based on what the CRITICS think
 SELECT year, ROUND(AVG(critic_score), 2) AS avg_critic_score, COUNT(*) AS num_games
@@ -71,7 +70,6 @@ LEFT JOIN game_reviews AS r
 	AND s.name = r.name
 GROUP BY year
 ORDER by units_sold DESC
-
 
 
 -- DASHBOARD 3: PLATFORM ANALYSIS
