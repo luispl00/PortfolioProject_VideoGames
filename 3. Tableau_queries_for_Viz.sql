@@ -13,25 +13,15 @@ ORDER BY games_sold DESC
 
 
 -- DASHBOARD 2: THE GOLDEN ERA OF VIDEO GAMES
--- Table 2: Best years for video games based on what the CRITICS think
-SELECT year, ROUND(AVG(critic_score), 2) AS avg_critic_score, COUNT(*) AS num_games
+-- Table 2: Best years for video games based on what the CRITICS and PLAYERS think
+SELECT year, ROUND(AVG(critic_score), 2) AS avg_critic_score, ROUND(AVG(user_score), 2) AS avg_user_score
 FROM game_sales AS s
 LEFT JOIN game_reviews AS r
     ON s.id = r.id
 	AND s.name = r.name
 GROUP BY year
 HAVING COUNT(*) >= 5
-ORDER by avg_critic_score DESC
-
--- Table 3: Best years for video games based on what the PLAYERS think
-SELECT year, ROUND(AVG(user_score), 2) AS avg_user_score, COUNT(*) AS num_games
-FROM game_sales AS s
-LEFT JOIN game_reviews AS r
-    ON s.id = r.id
-	AND s.name = r.name
-GROUP BY year
-HAVING COUNT(*) >= 5
-ORDER by avg_user_score DESC
+ORDER by year DESC
 
 -- Table 4: Years that both players and critics loved
 WITH top_critic_years AS
