@@ -5,8 +5,7 @@ Which platform has the best numbers?
 */
 
 
-
--- What about video game platforms? Were sales good? Let's find out which platform has the most games sold.
+-- What about video game platforms? Were sales good? Let's find out which platform have the most games sold.
 SELECT TOP 10 platform, ROUND((SUM(games_sold)*1000000), 0) AS total_units
 FROM game_sales
 GROUP BY platform
@@ -16,7 +15,6 @@ ORDER BY total_units DESC
 That's a lot of games sold! Now we see why kaggle says that the game industry has been growing so much.
 But units sold tells us about game's quality? Let's see there's a relation between units sold and the average critic score.
 */
-
 
 
 -- Let's see have a look to the best-seller game for each platform
@@ -36,7 +34,6 @@ ORDER BY total_units DESC
 /*
 Those numbers are huge! We can see every best-seller and their respective number of sale for the top 10 platforms in sales.
 */
-
 
 
 -- Now let's see how loved are our top selling platforms
