@@ -71,15 +71,23 @@ LEFT JOIN game_reviews AS r
 GROUP BY year
 ORDER by units_sold DESC
 
+-- Table 6: Best selling years broke down by platform
+SELECT year, platform, ROUND(SUM(games_sold)*1000000, 1) AS units_sold
+FROM game_sales AS s
+LEFT JOIN game_reviews AS r
+    ON s.id = r.id
+	AND s.name = r.name
+GROUP BY year, platform
+ORDER by year DESC, units_sold DESC
 
 -- DASHBOARD 3: PLATFORM ANALYSIS
--- Table 6: Sum of units sold by platform
+-- Table 7: Sum of units sold by platform
 SELECT platform, ROUND((SUM(games_sold)*1000000), 0) AS total_units
 FROM game_sales
 GROUP BY platform
 ORDER BY total_units DESC
 
--- Table 7: Best-selling game for each top selling platform
+-- Table 8: Best-selling game for each top selling platform
 WITH top_platforms AS(
 SELECT TOP 10 platform, ROUND((SUM(games_sold)*1000000), 0) AS total_units, MAX(games_sold) AS best_seller
 FROM game_sales AS s1
@@ -92,7 +100,7 @@ LEFT JOIN game_sales AS s
 	ON t.best_seller = s.games_sold
 ORDER BY total_units DESC
 
--- Table 8: Now let's see how loved are our top selling platforms
+-- Table 9: Now let's see how loved are our top selling platforms
 SELECT TOP 10 platform, ROUND(AVG(critic_score), 2) AS avg_critic_score, ROUND(AVG(user_score), 2) AS average_user_score
 FROM game_sales AS s
 LEFT JOIN game_reviews AS r 
